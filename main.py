@@ -40,10 +40,15 @@ def write_csv(data):
 
 
 def main():
-    BASE_URL = 'https://svetofor.info/sotovye-telefony-i-aksessuary/vse-smartfony/smartfony-s-podderzhkoy-4g-ru'
-    html = get_html(BASE_URL)
-    soup = get_soup(html)
-    get_data(soup)
+    try:
+        for i in range(1, 1000):
+            BASE_URL = f'https://svetofor.info/sotovye-telefony-i-aksessuary/vse-smartfony/smartfony-s-podderzhkoy-4g-ru/page-{i}'
+            html = get_html(BASE_URL)
+            soup = get_soup(html)
+            get_data(soup)
+            print(f'Вы спарсили {i} страницу')
+    except AttributeError:
+        print('Конец! Это была последняя страница')
 
 if __name__ == '__main__':
     main()
